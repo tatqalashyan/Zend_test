@@ -1,0 +1,7 @@
+{
+    "name": "root/zend-app",
+    "minimum-stability": "beta",
+    "require": {
+        "robmorgan/phinx": "^0.8.0"
+    }
+}

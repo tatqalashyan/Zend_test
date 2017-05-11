@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="blogApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Task</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <?php echo $this->headLink()->appendStylesheet('/css/index.css')  ?>
+
+
+
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Calc Amount</h1>
+            <form method="post" id="currency-form" class="text-center">
+                <div class="form-group">
+                    <label>From</label>
+                    <select id='currency_in' name="currency_in" required>
+                        <?php foreach ($this->curr as $k => $v):?>
+                            <option value="<?php echo $k ?>"><?php echo $k ?></option>
+                        <?php endforeach;?>
+                    </select>
+                    <label>Amount</label>
+                    <input type="text" placeholder="Currency" name="amount" id="amount" required/>
+                    <label>To</label>
+                    <select id='currency_out' name="currency_out" required>
+                        <?php foreach ($this->curr as $k => $v):?>
+                            <option value="<?php echo $k ?>"><?php echo $k ?></option>
+                        <?php endforeach;?>
+                    </select>
+                    <button type="submit" value="1" name="convert" id="convert" class="btn btn-default">Convert</button>
+
+                </div>
+            </form>
+            <table style="width:100%" id="result" class="text-center">
+                <tr>
+                    <th class="text-center">From</th>
+                    <th class="text-center">Amount</th>
+                    <th class="text-center">To</th>
+                    <th class="text-center">Result</th>
+                </tr>
+
+                <?php foreach ($this->history as $v):?>
+                    <tr>
+                        <td><?php echo $v['currency_in']?></td>
+                        <td><?php echo $v['amount']?></td>
+                        <td><?php echo $v['currency_out']?></td>
+                        <td><?php echo $v['result']?></td>
+                    </tr>
+                <?php endforeach;?>
+
+            </table>
+
+
+
+        </div>
+    </div>
+
+<?php echo $this->inlineScript()->prependFile(
+    'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+
+?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl('/js/index.js')) ?>
+
+
+
+
+
+</body>
+</html>
